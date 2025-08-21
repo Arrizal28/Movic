@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../common/state_enum.dart';
-import '../provider/movie/popular_movies_notifier.dart';
-import '../widgets/movie_card_list.dart';
+import '../../../common/state_enum.dart';
+import '../../provider/movie/popular_movies_notifier.dart';
+import '../../widgets/movie_card_list.dart';
 
 class PopularMoviesPage extends StatefulWidget {
   static const ROUTE_NAME = '/popular-movie';
@@ -39,7 +39,7 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final movie = data.movies[index];
-                  return MovieCard(movie);
+                  return MovieCard(movie: movie,);
                 },
                 itemCount: data.movies.length,
               );

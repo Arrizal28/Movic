@@ -4,7 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:movic/common/state_enum.dart';
 import 'package:movic/domain/entities/movie.dart';
-import 'package:movic/presentation/pages/popular_movies_page.dart';
+import 'package:movic/presentation/pages/movie/popular_movies_page.dart';
 import 'package:movic/presentation/provider/movie/popular_movies_notifier.dart';
 import 'package:provider/provider.dart';
 

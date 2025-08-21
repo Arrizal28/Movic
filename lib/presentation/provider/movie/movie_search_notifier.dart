@@ -36,4 +36,11 @@ class MovieSearchNotifier extends ChangeNotifier {
       },
     );
   }
+
+  Future<void> resetState() {
+    _state = RequestState.Empty;
+    _message = '';
+    _searchResult = [];
+    return Future.value();
+  }
 }

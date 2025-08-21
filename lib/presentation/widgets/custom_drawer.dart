@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:movic/presentation/pages/tv/tv_series_list_page.dart';
 
 import '../pages/about_page.dart';
-import '../pages/watchlist_movies_page.dart';
+import '../pages/watchlist_page.dart';
 
 class CustomDrawer extends StatefulWidget {
   final Widget content;
 
-  CustomDrawer({
+  const CustomDrawer({super.key,
     required this.content,
   });
 
@@ -50,7 +51,15 @@ class _CustomDrawerState extends State<CustomDrawer>
             leading: Icon(Icons.save_alt),
             title: Text('Watchlist'),
             onTap: () {
-              Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
+              Navigator.pushNamed(context, WatchlistPage.ROUTE_NAME);
+              _animationController.reverse();
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.tv),
+            title: Text('TV Series'),
+            onTap: () {
+              Navigator.pushNamed(context, TvSeriesListPage.ROUTE_NAME);
               _animationController.reverse();
             },
           ),

@@ -45,6 +45,10 @@ class TvDetailNotifier extends ChangeNotifier {
   bool _isAddedToWatchlist = false;
   bool get isAddedToWatchlist => _isAddedToWatchlist;
 
+  static const watchlistAddSuccessMessage = 'Added to Watchlist';
+  static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
+
+
   Future<void> fetchTvDetail(int id) async {
     _tvDetailState = RequestState.Loading;
     notifyListeners();

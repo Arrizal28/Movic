@@ -1,14 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:movic/presentation/pages/popular_movies_page.dart';
+import 'package:movic/presentation/pages/movie/popular_movies_page.dart';
 import 'package:movic/presentation/pages/search_page.dart';
-import 'package:movic/presentation/pages/top_rated_movies_page.dart';
+import 'package:movic/presentation/pages/movie/top_rated_movies_page.dart';
 import 'package:provider/provider.dart';
 
-import '../../common/constants.dart';
-import '../../common/state_enum.dart';
-import '../../domain/entities/movie.dart';
-import '../provider/movie/movie_list_notifier.dart';
+import '../../../common/constants.dart';
+import '../../../common/state_enum.dart';
+import '../../../domain/entities/movie.dart';
+import '../../provider/movie/movie_list_notifier.dart';
 import 'movie_detail_page.dart';
 
 class HomeMoviePage extends StatefulWidget {

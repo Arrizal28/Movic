@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 import '../../common/constants.dart';
 import '../../domain/entities/movie.dart';
-import '../pages/movie_detail_page.dart';
+import '../pages/movie/movie_detail_page.dart';
 
 class MovieCard extends StatelessWidget {
   final Movie movie;
 
-  MovieCard(this.movie);
+  const MovieCard({super.key, required this.movie});
 
   @override
   Widget build(BuildContext context) {

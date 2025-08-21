@@ -1,12 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movic/presentation/pages/about_page.dart';
-import 'package:movic/presentation/pages/home_movie_page.dart';
-import 'package:movic/presentation/pages/movie_detail_page.dart';
-import 'package:movic/presentation/pages/popular_movies_page.dart';
+import 'package:movic/presentation/pages/movie/home_movie_page.dart';
+import 'package:movic/presentation/pages/movie/movie_detail_page.dart';
+import 'package:movic/presentation/pages/movie/popular_movies_page.dart';
 import 'package:movic/presentation/pages/search_page.dart';
-import 'package:movic/presentation/pages/top_rated_movies_page.dart';
-import 'package:movic/presentation/pages/watchlist_movies_page.dart';
+import 'package:movic/presentation/pages/movie/top_rated_movies_page.dart';
+import 'package:movic/presentation/pages/tv/now_playing_tv_page.dart';
+import 'package:movic/presentation/pages/tv/popular_tv_page.dart';
+import 'package:movic/presentation/pages/tv/top_rated_tv_page.dart';
+import 'package:movic/presentation/pages/tv/tv_detail_page.dart';
+import 'package:movic/presentation/pages/tv/tv_series_list_page.dart';
+import 'package:movic/presentation/pages/watchlist_page.dart';
 import 'package:movic/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:movic/presentation/provider/movie/movie_list_notifier.dart';
 import 'package:movic/presentation/provider/movie/movie_search_notifier.dart';
@@ -100,28 +105,26 @@ class MyApp extends StatelessWidget {
               );
             case SearchPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => SearchPage());
-            case WatchlistMoviesPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
+            case WatchlistPage.ROUTE_NAME:
+              return MaterialPageRoute(builder: (_) => WatchlistPage());
             case AboutPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => AboutPage());
-            // case TvDetailPage.ROUTE_NAME:
-            //   final args = settings.arguments as Map<String, dynamic>;
-            //   final id = args['id'] as int;
-            //   return MaterialPageRoute(
-            //     builder: (_) => TvDetailPage(id: id),
-            //   );
-            // case TvSeriesListPage.ROUTE_NAME:
-            //   return CupertinoPageRoute(
-            //       builder: (_) => const TvSeriesListPage()
-            //   );
-            // case PopularTvPage.ROUTE_NAME:
-            //   return CupertinoPageRoute(
-            //       builder: (_) => const PopularTvPage()
-            //   );
-            // case TopRatedTvPage.ROUTE_NAME:
-            //   return CupertinoPageRoute(
-            //       builder: (_) => const TopRatedTvPage()
-            //   );
+            case TvDetailPage.ROUTE_NAME:
+              final args = settings.arguments as Map<String, dynamic>;
+              final id = args['id'] as int;
+              return MaterialPageRoute(builder: (_) => TvDetailPage(id: id));
+            case TvSeriesListPage.ROUTE_NAME:
+              return CupertinoPageRoute(
+                builder: (_) => const TvSeriesListPage(),
+              );
+            case NowPlayingTvPage.ROUTE_NAME:
+              return CupertinoPageRoute(
+                builder: (_) => const NowPlayingTvPage(),
+              );
+            case PopularTvPage.ROUTE_NAME:
+              return CupertinoPageRoute(builder: (_) => const PopularTvPage());
+            case TopRatedTvPage.ROUTE_NAME:
+              return CupertinoPageRoute(builder: (_) => const TopRatedTvPage());
             default:
               return MaterialPageRoute(
                 builder: (_) {
