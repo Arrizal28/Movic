@@ -12,11 +12,13 @@ import 'package:movic/common/state_enum.dart' as _i9;
 import 'package:movic/domain/entities/movie.dart' as _i10;
 import 'package:movic/domain/entities/movie_detail.dart' as _i7;
 import 'package:movic/domain/usecases/movie/get_movie_detail.dart' as _i2;
-import 'package:movic/domain/usecases/movie/get_movie_recommendations.dart' as _i3;
+import 'package:movic/domain/usecases/movie/get_movie_recommendations.dart'
+    as _i3;
 import 'package:movic/domain/usecases/movie/get_watchlist_status.dart' as _i4;
 import 'package:movic/domain/usecases/movie/remove_watchlist.dart' as _i6;
 import 'package:movic/domain/usecases/movie/save_watchlist.dart' as _i5;
-import 'package:movic/presentation/provider/movie/movie_detail_notifier.dart' as _i8;
+import 'package:movic/presentation/provider/movie/movie_detail_notifier.dart'
+    as _i8;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

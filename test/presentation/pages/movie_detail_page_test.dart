@@ -9,7 +9,7 @@ import 'package:movic/presentation/pages/movie/movie_detail_page.dart';
 import 'package:movic/presentation/provider/movie/movie_detail_notifier.dart';
 import 'package:provider/provider.dart';
 
-import '../../dummy_data/dummy_objects.dart';
+import '../../dummy_data/dummy_object.dart';
 import 'movie_detail_page_test.mocks.dart';
 
 @GenerateMocks([MovieDetailNotifier])
@@ -71,7 +71,7 @@ void main() {
     when(mockNotifier.isAddedToWatchlist).thenReturn(false);
     when(mockNotifier.watchlistMessage).thenReturn('Added to Watchlist');
 
-    final watchlistButton = find.byType(ElevatedButton);
+    final watchlistButton = find.byType(FilledButton);
 
     await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
 
@@ -94,7 +94,7 @@ void main() {
     when(mockNotifier.isAddedToWatchlist).thenReturn(false);
     when(mockNotifier.watchlistMessage).thenReturn('Failed');
 
-    final watchlistButton = find.byType(ElevatedButton);
+    final watchlistButton = find.byType(FilledButton);
 
     await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
 

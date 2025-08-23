@@ -11,7 +11,7 @@ import 'package:movic/data/models/movie/movie_model.dart';
 import 'package:movic/data/repositories/movie_repository_impl.dart';
 import 'package:movic/domain/entities/movie.dart';
 
-import '../../dummy_data/dummy_objects.dart';
+import '../../dummy_data/dummy_object.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
@@ -86,7 +86,7 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getNowPlayingMovies())
-          .thenThrow(ServerException());
+          .thenThrow(ServerException(message: 'Failed to connect to server'));
       // act
       final result = await repository.getNowPlayingMovies();
       // assert
@@ -128,7 +128,7 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getPopularMovies())
-          .thenThrow(ServerException());
+          .thenThrow(ServerException(message: 'Failed to connect to server'));
       // act
       final result = await repository.getPopularMovies();
       // assert
@@ -167,7 +167,7 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getTopRatedMovies())
-          .thenThrow(ServerException());
+          .thenThrow(ServerException(message: 'Failed to connect to server'));
       // act
       final result = await repository.getTopRatedMovies();
       // assert
@@ -232,7 +232,7 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getMovieDetail(tId))
-          .thenThrow(ServerException());
+          .thenThrow(ServerException(message: 'Failed to connect to server'));
       // act
       final result = await repository.getMovieDetail(tId);
       // assert
@@ -278,7 +278,7 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getMovieRecommendations(tId))
-          .thenThrow(ServerException());
+          .thenThrow(ServerException(message: 'Failed to connect to server'));
       // act
       final result = await repository.getMovieRecommendations(tId);
       // assertbuild runner
@@ -321,7 +321,7 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.searchMovies(tQuery))
-          .thenThrow(ServerException());
+          .thenThrow(ServerException(message: 'Failed to connect to server'));
       // act
       final result = await repository.searchMovies(tQuery);
       // assert
@@ -356,7 +356,7 @@ void main() {
     test('should return DatabaseFailure when saving unsuccessful', () async {
       // arrange
       when(mockLocalDataSource.insertWatchlist(testMovieTable))
-          .thenThrow(DatabaseException('Failed to add watchlist'));
+          .thenThrow(DatabaseException(message: 'Failed to add watchlist'));
       // act
       final result = await repository.saveWatchlist(testMovieDetail);
       // assert
@@ -378,7 +378,7 @@ void main() {
     test('should return DatabaseFailure when remove unsuccessful', () async {
       // arrange
       when(mockLocalDataSource.removeWatchlist(testMovieTable))
-          .thenThrow(DatabaseException('Failed to remove watchlist'));
+          .thenThrow(DatabaseException(message: 'Failed to remove watchlist'));
       // act
       final result = await repository.removeWatchlist(testMovieDetail);
       // assert

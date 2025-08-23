@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:movic/common/exception.dart';
 import 'package:movic/data/datasources/movie_local_data_source.dart';
 
-import '../../dummy_data/dummy_objects.dart';
+import '../../dummy_data/dummy_object.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
