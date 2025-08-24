@@ -26,14 +26,17 @@ class PopularTvSeriesNotifier extends ChangeNotifier {
     notifyListeners();
 
     final result = await getPopularTvSeries.execute();
-    result.fold((failure) {
-      _state = RequestState.Error;
-      _message = failure.message;
-      notifyListeners();
-    }, (tvSeriesData) {
-      _state = RequestState.Loaded;
-      _popularTvSeries = tvSeriesData;
-      notifyListeners();
-    });
+    result.fold(
+      (failure) {
+        _state = RequestState.Error;
+        _message = failure.message;
+        notifyListeners();
+      },
+      (tvSeriesData) {
+        _state = RequestState.Loaded;
+        _popularTvSeries = tvSeriesData;
+        notifyListeners();
+      },
+    );
   }
 }

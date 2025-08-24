@@ -26,15 +26,18 @@ class TvSearchNotifier extends ChangeNotifier {
     notifyListeners();
 
     final result = await searchTvSeries.execute(query);
-    result.fold((failure) {
-      _state = RequestState.Error;
-      _message = failure.message;
-      notifyListeners();
-    }, (data) {
-      _state = RequestState.Loaded;
-      _searchResult = data;
-      notifyListeners();
-    });
+    result.fold(
+      (failure) {
+        _state = RequestState.Error;
+        _message = failure.message;
+        notifyListeners();
+      },
+      (data) {
+        _state = RequestState.Loaded;
+        _searchResult = data;
+        notifyListeners();
+      },
+    );
   }
 
   Future<void> resetState() {

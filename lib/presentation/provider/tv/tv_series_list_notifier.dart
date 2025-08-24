@@ -7,7 +7,6 @@ import '../../../domain/usecases/tv/get_popular_tv_series.dart';
 import '../../../domain/usecases/tv/get_top_rated_tv_series.dart';
 
 class TvSeriesListNotifier extends ChangeNotifier {
-
   late var _nowPlayingTvSeries = <Tv>[];
   List<Tv> get nowPlayingTvSeries => _nowPlayingTvSeries;
 
@@ -44,15 +43,18 @@ class TvSeriesListNotifier extends ChangeNotifier {
     notifyListeners();
 
     final result = await getNowPlayingTvSeries.execute();
-    result.fold((failure) {
-      _nowPlayingState = RequestState.Error;
-      _message = failure.message;
-      notifyListeners();
-    }, (tvSeriesData) {
-      _nowPlayingState = RequestState.Loaded;
-      _nowPlayingTvSeries = tvSeriesData;
-      notifyListeners();
-    });
+    result.fold(
+      (failure) {
+        _nowPlayingState = RequestState.Error;
+        _message = failure.message;
+        notifyListeners();
+      },
+      (tvSeriesData) {
+        _nowPlayingState = RequestState.Loaded;
+        _nowPlayingTvSeries = tvSeriesData;
+        notifyListeners();
+      },
+    );
   }
 
   Future<void> fetchPopularTvSeries() async {
@@ -60,15 +62,18 @@ class TvSeriesListNotifier extends ChangeNotifier {
     notifyListeners();
 
     final result = await getPopularTvSeries.execute();
-    result.fold((failure) {
-      _popularState = RequestState.Error;
-      _message = failure.message;
-      notifyListeners();
-    }, (tvSeriesData) {
-      _popularState = RequestState.Loaded;
-      _popularTvSeries = tvSeriesData;
-      notifyListeners();
-    });
+    result.fold(
+      (failure) {
+        _popularState = RequestState.Error;
+        _message = failure.message;
+        notifyListeners();
+      },
+      (tvSeriesData) {
+        _popularState = RequestState.Loaded;
+        _popularTvSeries = tvSeriesData;
+        notifyListeners();
+      },
+    );
   }
 
   Future<void> fetchTopRatedTvSeries() async {
@@ -76,15 +81,17 @@ class TvSeriesListNotifier extends ChangeNotifier {
     notifyListeners();
 
     final result = await getTopRatedTvSeries.execute();
-    result.fold((failure) {
-      _topRatedState = RequestState.Error;
-      _message = failure.message;
-      notifyListeners();
-    }, (tvSeriesData) {
-      _topRatedState = RequestState.Loaded;
-      _topRatedTvSeries = tvSeriesData;
-      notifyListeners();
-    });
+    result.fold(
+      (failure) {
+        _topRatedState = RequestState.Error;
+        _message = failure.message;
+        notifyListeners();
+      },
+      (tvSeriesData) {
+        _topRatedState = RequestState.Loaded;
+        _topRatedTvSeries = tvSeriesData;
+        notifyListeners();
+      },
+    );
   }
-
 }

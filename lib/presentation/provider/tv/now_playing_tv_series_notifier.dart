@@ -26,14 +26,17 @@ class NowPlayingTvSeriesNotifier extends ChangeNotifier {
     notifyListeners();
 
     final result = await getNowPlayingTvSeries.execute();
-    result.fold((failure) {
-      _state = RequestState.Error;
-      _message = failure.message;
-      notifyListeners();
-    }, (tvSeriesData) {
-      _state = RequestState.Loaded;
-      _nowPlayingTvSeries = tvSeriesData;
-      notifyListeners();
-    });
+    result.fold(
+      (failure) {
+        _state = RequestState.Error;
+        _message = failure.message;
+        notifyListeners();
+      },
+      (tvSeriesData) {
+        _state = RequestState.Loaded;
+        _nowPlayingTvSeries = tvSeriesData;
+        notifyListeners();
+      },
+    );
   }
 }

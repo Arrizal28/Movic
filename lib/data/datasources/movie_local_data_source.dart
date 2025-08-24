@@ -1,5 +1,3 @@
-
-
 import '../../common/exception.dart';
 import '../models/movie/movie_table.dart';
 import 'db/database_helper.dart';

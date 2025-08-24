@@ -9,13 +9,13 @@ import '../../../domain/usecases/tv/remove_tv_watchlist.dart';
 import '../../../domain/usecases/tv/save_tv_watchlist.dart';
 
 class TvDetailNotifier extends ChangeNotifier {
-
-  TvDetailNotifier(
-      {required this.getTvDetail,
-        required this.getTvRecommendations,
-        required this.getTvWatchlistStatus,
-        required this.saveWatchlist,
-        required this.removeWatchlist});
+  TvDetailNotifier({
+    required this.getTvDetail,
+    required this.getTvRecommendations,
+    required this.getTvWatchlistStatus,
+    required this.saveWatchlist,
+    required this.removeWatchlist,
+  });
 
   final GetTvDetail getTvDetail;
   final GetTvRecommendations getTvRecommendations;
@@ -48,50 +48,59 @@ class TvDetailNotifier extends ChangeNotifier {
   static const watchlistAddSuccessMessage = 'Added to Watchlist';
   static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
 
-
   Future<void> fetchTvDetail(int id) async {
     _tvDetailState = RequestState.Loading;
     notifyListeners();
     final detailResult = await getTvDetail.execute(id);
-    final recommendationResult =
-    await getTvRecommendations.execute(id);
-    detailResult.fold((failure) {
-      _tvDetailState = RequestState.Error;
-      _message = failure.message;
-      notifyListeners();
-    }, (tv) {
-      _tvDetail = tv;
-      _tvDetailState = RequestState.Loaded;
-      notifyListeners();
-    });
-    recommendationResult.fold((failure) {
-      _tvRecommendationsState = RequestState.Error;
-      _message = failure.message;
-    }, (movies) {
-      _tvRecommendations = movies;
-      _tvRecommendationsState = RequestState.Loaded;
-    });
+    final recommendationResult = await getTvRecommendations.execute(id);
+    detailResult.fold(
+      (failure) {
+        _tvDetailState = RequestState.Error;
+        _message = failure.message;
+        notifyListeners();
+      },
+      (tv) {
+        _tvDetail = tv;
+        _tvDetailState = RequestState.Loaded;
+        notifyListeners();
+      },
+    );
+    recommendationResult.fold(
+      (failure) {
+        _tvRecommendationsState = RequestState.Error;
+        _message = failure.message;
+      },
+      (movies) {
+        _tvRecommendations = movies;
+        _tvRecommendationsState = RequestState.Loaded;
+      },
+    );
   }
 
   Future<void> addWatchlist(TvDetail tv) async {
     final result = await saveWatchlist.execute(tv);
-    await result.fold((failure) async {
-      _watchlistMessage = failure.message;
-    }, (successMessage) async {
-      _watchlistMessage = successMessage;
-    });
+    await result.fold(
+      (failure) async {
+        _watchlistMessage = failure.message;
+      },
+      (successMessage) async {
+        _watchlistMessage = successMessage;
+      },
+    );
 
     await loadWatchlistStatus(tv.id);
-
   }
 
   Future<void> removeFromWatchlist(TvDetail tv) async {
     final result = await removeWatchlist.execute(tv);
-    result.fold((failure) {
-      _watchlistMessage = failure.message;
-    }, (successMessage) {
-      _watchlistMessage = successMessage;
-    });
+    result.fold(
+      (failure) {
+        _watchlistMessage = failure.message;
+      },
+      (successMessage) {
+        _watchlistMessage = successMessage;
+      },
+    );
 
     await loadWatchlistStatus(tv.id);
   }

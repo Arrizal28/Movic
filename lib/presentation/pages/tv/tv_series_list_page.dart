@@ -82,30 +82,30 @@ Widget _buildTvList(TvType type) {
   return Consumer<TvSeriesListNotifier>(
     builder: (context, tvData, child) {
       RequestState state;
-      List<Tv> Tvs = [];
+      List<Tv> tvList = [];
       switch (type) {
         case TvType.NowPlaying: // tv is now playing
           state = tvData.nowPlayingState;
-          Tvs = tvData.nowPlayingTvSeries;
+          tvList = tvData.nowPlayingTvSeries;
           break;
         case TvType.Popular: // tv is popular
           state = tvData.popularState;
-          Tvs = tvData.popularTvSeries;
+          tvList = tvData.popularTvSeries;
           break;
         case TvType.TopRated: //tv is top-rated
           state = tvData.topRatedState;
-          Tvs = tvData.topRatedTvSeries;
+          tvList = tvData.topRatedTvSeries;
           break;
         default:
           state = RequestState.Empty;
-          Tvs = List.empty();
+          tvList = List.empty();
           break;
       }
 
       if (state == RequestState.Loading) {
         return const Center(child: CircularProgressIndicator());
       } else if (state == RequestState.Loaded) {
-        return TvList(Tvs);
+        return TvList(tvList);
       } else {
         return Center(
           key: const Key('error_message'),

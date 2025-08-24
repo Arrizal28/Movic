@@ -12,6 +12,8 @@ import '../../provider/movie/movie_list_notifier.dart';
 import 'movie_detail_page.dart';
 
 class HomeMoviePage extends StatefulWidget {
+  const HomeMoviePage({super.key});
+
   @override
   _HomeMoviePageState createState() => _HomeMoviePageState();
 }
